@@ -1,0 +1,53 @@
+class student:
+    def __init__(self, name, surname, ID):
+        self.name=name
+        self.surname=surname
+        self.ID=ID
+        self.courses=[]
+
+    def add_course(self,courseName):
+        course1=course(courseName)
+        self.courses.append(course1.name)
+        print(self.courses)
+
+    def add_assignment(self,courseName, assignmentName, deadline):
+        for Course in self.courses:
+            if courseName==Course:
+                course1=course(courseName)
+                course1.add_assignment(assignmentName,deadline)
+                print(self.courses, course1.assignment)
+
+    def add_grade(self,courseName, assignmentName,deadline, grade):
+        for Course in self.courses:
+            if courseName==Course:
+                course1=course(courseName)
+                for assignments in course1.assignment:
+                    if assignments==assignmentName:
+                        assignment1=assignment(assignmentName,deadline)
+                        assignment1.add_grade(grade)
+                        print(assignment1.grade)
+                        
+class course():
+    def __init__(self, name):
+        self.name=name
+        self.assignment=[]
+    def add_assignment(self, name, deadline):
+        Assignment = assignment(name, deadline)
+        self.assignment.append(Assignment.name)
+class assignment():
+    def __init__(self, name , deadline):
+        self.name=name
+        self.deadline=deadline
+        self.assignment=assignment
+        self.grade=[]
+    def add_grade(self,grade):
+        self.grade.append(grade)
+def main():
+    Student=student("Shantal", "Adajian","A091234")
+    Student.add_course("ENGS101")
+    Student.add_assignment("ENGS101","HW1","10/10/19")
+    Student.add_grade("ENGS101","HW1","10/10/19","90")
+    Student.add_assignment("ENGS101","HW2","11/10/19")
+    Student.add_grade("ENGS101","HW2","11/10/19","80")
+
+main()
